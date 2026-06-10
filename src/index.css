@@ -1,0 +1,60 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-red: #DC2626;
+  --color-brand-blue: #1E3A5F;
+  --color-brand-yellow: #FBBF24;
+  --color-brand-dark: #0F172A;
+  --color-brand-light: #F8FAFC;
+}
+
+/* ===== Global Styles ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'PingFang SC', 'Microsoft YaHei', 'Noto Sans SC', system-ui, sans-serif;
+  color: #1a1a1a;
+  background: #fff;
+  overflow-x: hidden;
+}
+
+/* ===== Nanfu-style Utility Classes ===== */
+.text-giant {
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  font-weight: 900;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+}
+
+.text-huge {
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.section-red {
+  background-color: var(--color-brand-red);
+  color: white;
+}
+
+.section-blue {
+  background-color: var(--color-brand-blue);
+  color: white;
+}
+
+.section-white {
+  background-color: white;
+}
+
+.section-dark {
+  background-color: var(--color-brand-dark);
+  color: white;
+}
