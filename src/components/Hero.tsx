@@ -4,9 +4,9 @@ import { Link } from 'react-router-dom';
 import Button from './ui/Button';
 
 const stats = [
-  { icon: Shield, value: '10+', label: '年技术积累' },
+  { icon: Award, value: '30+', label: '项专利技术' },
   { icon: Zap, value: '2000+', label: '台设备在网运行' },
-  { icon: Award, value: '98%', label: '客户满意度' },
+  { icon: Shield, value: '98%', label: '客户满意度' },
 ];
 
 export default function Hero() {

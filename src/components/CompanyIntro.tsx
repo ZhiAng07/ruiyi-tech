@@ -5,9 +5,9 @@ import { useScrollAnimation } from '../hooks/useScrollAnimation';
 import { useCountUp } from '../hooks/useCountUp';
 
 const achievements = [
-  { icon: TrendingUp, value: 2000, suffix: '+', label: '设备交付' },
-  { icon: Users, value: 500, suffix: '+', label: '合作客户' },
-  { icon: Factory, value: 15, suffix: '年', label: '行业经验' },
+  { icon: TrendingUp, value: 30, suffix: '+', label: '专利技术' },
+  { icon: Users, value: 2000, suffix: '+', label: '设备交付' },
+  { icon: Factory, value: 28, suffix: '', label: '省市覆盖' },
 ];
 
 function StatItem({ icon: Icon, value, suffix, label }: (typeof achievements)[0]) {
