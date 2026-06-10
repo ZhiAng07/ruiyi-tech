@@ -6,9 +6,10 @@
   --color-brand-yellow: #FBBF24;
   --color-brand-dark: #0F172A;
   --color-brand-light: #F8FAFC;
+  --color-brand-accent: #F59E0B;
 }
 
-/* ===== Global Styles ===== */
+/* ===== Global Reset ===== */
 * {
   margin: 0;
   padding: 0;
@@ -20,26 +21,51 @@ html {
 }
 
 body {
-  font-family: 'PingFang SC', 'Microsoft YaHei', 'Noto Sans SC', system-ui, sans-serif;
+  font-family: 'PingFang SC', 'Microsoft YaHei', 'Noto Sans SC', system-ui, -apple-system, sans-serif;
   color: #1a1a1a;
   background: #fff;
   overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ===== Increased Page Margins ===== */
+.section-padding {
+  padding-top: clamp(4rem, 10vw, 8rem);
+  padding-bottom: clamp(4rem, 10vw, 8rem);
+}
+
+.container-wide {
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: clamp(1.5rem, 5vw, 3rem);
+  padding-right: clamp(1.5rem, 5vw, 3rem);
+}
+
+.container-narrow {
+  max-width: 960px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: clamp(1.5rem, 5vw, 3rem);
+  padding-right: clamp(1.5rem, 5vw, 3rem);
 }
 
 /* ===== Nanfu-style Utility Classes ===== */
 .text-giant {
-  font-size: clamp(2.5rem, 6vw, 5rem);
+  font-size: clamp(3rem, 7vw, 6rem);
   font-weight: 900;
-  line-height: 1.1;
+  line-height: 1.08;
   letter-spacing: -0.03em;
 }
 
 .text-huge {
-  font-size: clamp(1.8rem, 4vw, 3rem);
+  font-size: clamp(2rem, 4.5vw, 3.5rem);
   font-weight: 800;
-  line-height: 1.2;
+  line-height: 1.15;
 }
 
+/* ===== Section Backgrounds ===== */
 .section-red {
   background-color: var(--color-brand-red);
   color: white;
@@ -50,11 +76,44 @@ body {
   color: white;
 }
 
-.section-white {
-  background-color: white;
-}
-
 .section-dark {
   background-color: var(--color-brand-dark);
   color: white;
+}
+
+/* ===== Subtle Grid Pattern ===== */
+.bg-grid {
+  background-image:
+    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 80px 80px;
+}
+
+/* ===== Card Hover Glow ===== */
+.card-glow {
+  transition: box-shadow 0.4s ease, transform 0.4s ease;
+}
+.card-glow:hover {
+  box-shadow: 0 20px 60px -12px rgba(0,0,0,0.15);
+  transform: translateY(-4px);
+}
+
+/* ===== Decorative Divider ===== */
+.divider-yellow {
+  width: 64px;
+  height: 4px;
+  border-radius: 2px;
+  background: var(--color-brand-yellow);
+}
+
+/* ===== Image Placeholder ===== */
+.img-placeholder {
+  background: linear-gradient(135deg, #f0f0f0 0%, #e0e0e0 50%, #f0f0f0 100%);
+  background-size: 200% 200%;
+  animation: shimmer 2s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
 }

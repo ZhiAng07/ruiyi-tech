@@ -28,14 +28,14 @@ const contactInfo = [
 
 export default function Contact() {
   return (
-    <section id="contact" className="py-20 md:py-28 bg-gray-50">
-      <div className="max-w-7xl mx-auto px-4 md:px-6">
+    <section id="contact" className="section-padding bg-gray-50">
+      <div className="container-wide">
         <SectionTitle
           title="联系我们"
           subtitle="期待与您合作，为您提供专业的产品与服务"
         />
 
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 mt-8">
+        <div className="grid lg:grid-cols-2 gap-16 mt-4">
           {/* Left: Contact info */}
           <motion.div
             initial={{ opacity: 0, x: -40 }}

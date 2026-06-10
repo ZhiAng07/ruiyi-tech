@@ -22,7 +22,7 @@ const footerLinks = {
 export default function Footer() {
   return (
     <footer className="bg-gray-950 text-white">
-      <div className="max-w-7xl mx-auto px-4 md:px-6 py-16">
+      <div className="container-wide py-16">
         <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-10">
           {/* Brand Column */}
           <div className="lg:col-span-2">
@@ -74,9 +74,9 @@ export default function Footer() {
 
       {/* Bottom bar */}
       <div className="border-t border-white/10">
-        <div className="max-w-7xl mx-auto px-4 md:px-6 py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="container-wide py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
           <span className="text-sm text-white/30">
-            © 2024 锐易科技 RUIYI TECHNOLOGY. All rights reserved.
+            © 2026 锐易科技 RUIYI TECHNOLOGY. All rights reserved.
           </span>
           <span className="text-sm text-white/30">
             皖ICP备2024XXXXXXXX号-1
