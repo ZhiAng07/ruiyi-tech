@@ -10,27 +10,37 @@ const achievements = [
   { icon: Factory, value: 28, suffix: '', label: '省市覆盖' },
 ];
 
+const values = ['精准检测', '安全可靠', '技术创新', '客户至上'];
+
 function StatItem({ icon: Icon, value, suffix, label }: (typeof achievements)[0]) {
   const [ref, isVisible] = useScrollAnimation<HTMLDivElement>();
   const count = useCountUp(value, isVisible);
 
   return (
-    <div ref={ref} className="text-center p-4 rounded-2xl bg-white/5 border border-white/5">
-      <Icon className="w-7 h-7 text-brand-yellow mx-auto mb-3" />
+    <div ref={ref} className="text-center p-5 rounded-3xl bg-white/[0.04] border border-white/[0.06] backdrop-blur-sm hover:border-white/[0.12] transition-all duration-400">
+      <Icon className="w-8 h-8 text-gold mx-auto mb-3" />
       <div className="text-3xl md:text-4xl font-black text-white">
         {count.toLocaleString()}
-        <span className="text-brand-yellow">{suffix}</span>
+        <span className="text-gold">{suffix}</span>
       </div>
-      <div className="text-white/40 mt-1 text-sm">{label}</div>
+      <div className="text-white/35 mt-1 text-sm">{label}</div>
     </div>
   );
 }
 
 export default function CompanyIntro() {
   return (
-    <section id="about" className="section-padding section-dark bg-grid">
-      <div className="container-wide">
+    <section id="about" className="section-padding bg-primary relative overflow-hidden">
+      {/* Top accent line */}
+      <div className="absolute top-0 left-0 right-0 h-1 bg-accent" />
+
+      {/* Background pattern */}
+      <div className="absolute inset-0 bg-dots text-white/[0.03] pointer-events-none" />
+      <div className="absolute top-0 right-0 w-96 h-96 bg-accent/[0.04] rounded-full blur-3xl pointer-events-none" />
+
+      <div className="container-wide relative">
         <SectionTitle
+          overline="About Us"
           title="关于锐易科技"
           subtitle="深耕电力检测领域，以技术创新驱动行业发展"
           light
@@ -47,9 +57,9 @@ export default function CompanyIntro() {
             <h3 className="text-2xl md:text-3xl font-bold text-white mb-6">
               以科技之力，护电网安全
             </h3>
-            <div className="space-y-4 text-white/65 leading-relaxed text-base">
+            <div className="space-y-4 text-white/60 leading-relaxed text-base">
               <p>
-                锐易科技成立于<strong className="text-brand-yellow">2026年</strong>，总部位于安徽省合肥市，是一家专注于电力系统对地电容电流检测设备研发、制造与销售的高新技术企业。
+                锐易科技成立于<strong className="text-gold">2026年</strong>，总部位于安徽省合肥市，是一家专注于电力系统对地电容电流检测设备研发、制造与销售的高新技术企业。
               </p>
               <p>
                 公司拥有一支由电力系统专家、高级工程师组成的核心研发团队，先后攻克了高精度电容电流传感、自适应补偿算法、高压绝缘设计等多项关键技术，累计获得国家专利30余项。
@@ -59,30 +69,33 @@ export default function CompanyIntro() {
               </p>
             </div>
 
-            {/* Values */}
+            {/* Values as small cards */}
             <div className="grid grid-cols-2 gap-3 mt-8">
-              {['精准检测', '安全可靠', '技术创新', '客户至上'].map((v) => (
-                <div key={v} className="flex items-center gap-2 text-white/70 text-sm">
-                  <CheckCircle className="w-4 h-4 text-brand-yellow" />
-                  {v}
+              {values.map((v) => (
+                <div
+                  key={v}
+                  className="flex items-center gap-2.5 bg-white/[0.04] border border-white/[0.06] rounded-2xl px-4 py-3 hover:border-white/[0.15] hover:bg-white/[0.06] transition-all duration-300"
+                >
+                  <CheckCircle className="w-4 h-4 text-gold shrink-0" />
+                  <span className="text-white/70 text-sm font-medium">{v}</span>
                 </div>
               ))}
             </div>
 
             {/* Company Info Cards */}
             <div className="grid sm:grid-cols-2 gap-4 mt-8">
-              <div className="flex items-start gap-3 p-5 rounded-2xl bg-white/5 border border-white/8 hover:border-white/15 transition-colors">
-                <div className="w-10 h-10 rounded-xl bg-brand-yellow/10 flex items-center justify-center shrink-0">
-                  <MapPin className="w-5 h-5 text-brand-yellow" />
+              <div className="flex items-start gap-3 p-5 rounded-2xl bg-white/[0.04] border border-white/[0.06] hover:border-white/[0.12] transition-colors">
+                <div className="w-10 h-10 rounded-xl bg-gold/10 flex items-center justify-center shrink-0">
+                  <MapPin className="w-5 h-5 text-gold" />
                 </div>
                 <div>
                   <div className="text-white/80 font-semibold text-sm mb-0.5">公司地址</div>
                   <div className="text-white/50 text-sm leading-relaxed">安徽省合肥市包河区包河大道56号</div>
                 </div>
               </div>
-              <div className="flex items-start gap-3 p-5 rounded-2xl bg-white/5 border border-white/8 hover:border-white/15 transition-colors">
-                <div className="w-10 h-10 rounded-xl bg-brand-yellow/10 flex items-center justify-center shrink-0">
-                  <Phone className="w-5 h-5 text-brand-yellow" />
+              <div className="flex items-start gap-3 p-5 rounded-2xl bg-white/[0.04] border border-white/[0.06] hover:border-white/[0.12] transition-colors">
+                <div className="w-10 h-10 rounded-xl bg-gold/10 flex items-center justify-center shrink-0">
+                  <Phone className="w-5 h-5 text-gold" />
                 </div>
                 <div>
                   <div className="text-white/80 font-semibold text-sm mb-0.5">联系方式</div>
@@ -101,15 +114,18 @@ export default function CompanyIntro() {
             transition={{ duration: 0.7 }}
           >
             {/* Image card */}
-            <div className="relative mb-12 rounded-3xl overflow-hidden shadow-2xl aspect-[4/3]">
+            <div className="relative mb-12 rounded-3xl overflow-hidden shadow-2xl aspect-[4/3] border border-white/[0.08]">
               <img
                 src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=800&h=600&fit=crop&auto=format"
                 alt="制造工厂"
                 className="absolute inset-0 w-full h-full object-cover"
+                loading="lazy"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-brand-dark/70 via-transparent to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-primary/50 via-transparent to-transparent" />
               <div className="absolute bottom-0 left-0 right-0 p-6">
-                <div className="text-white/50 text-xs tracking-widest uppercase mb-1">RUIYI TECH</div>
+                <div className="inline-flex px-2.5 py-1 rounded-full bg-white/[0.12] backdrop-blur-sm text-white/60 text-[10px] tracking-widest uppercase mb-2">
+                  RUIYI TECH
+                </div>
                 <div className="text-white font-black text-xl">锐易科技制造中心</div>
               </div>
             </div>

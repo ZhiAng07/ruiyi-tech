@@ -4,6 +4,7 @@ import { useScrollAnimation } from '../../hooks/useScrollAnimation';
 interface SectionTitleProps {
   title: string;
   subtitle?: string;
+  overline?: string;
   light?: boolean;
   align?: 'left' | 'center';
 }
@@ -11,6 +12,7 @@ interface SectionTitleProps {
 export default function SectionTitle({
   title,
   subtitle,
+  overline,
   light = false,
   align = 'center',
 }: SectionTitleProps) {
@@ -24,24 +26,40 @@ export default function SectionTitle({
       transition={{ duration: 0.7, ease: 'easeOut' }}
       className={`mb-12 md:mb-16 ${align === 'center' ? 'text-center' : 'text-left'}`}
     >
+      {/* Overline */}
+      {overline && (
+        <p
+          className={`text-overline mb-3 ${
+            light ? 'text-gold' : 'text-accent'
+          }`}
+        >
+          {overline}
+        </p>
+      )}
+
+      {/* Title */}
       <h2
-        className={`text-huge mb-4 ${
-          light ? 'text-white' : 'text-gray-900'
+        className={`text-display mb-4 ${
+          light ? 'text-white' : 'text-text-primary'
         }`}
       >
         {title}
       </h2>
+
+      {/* Subtitle */}
       {subtitle && (
         <p
           className={`text-lg md:text-xl max-w-2xl ${
             align === 'center' ? 'mx-auto' : ''
-          } ${light ? 'text-white/70' : 'text-gray-500'}`}
+          } ${light ? 'text-white/60' : 'text-text-secondary'}`}
         >
           {subtitle}
         </p>
       )}
+
+      {/* Gold divider */}
       <div
-        className={`mt-4 h-1 w-20 rounded-full bg-brand-yellow ${
+        className={`mt-5 w-12 h-1 rounded-full bg-gold ${
           align === 'center' ? 'mx-auto' : ''
         }`}
       />

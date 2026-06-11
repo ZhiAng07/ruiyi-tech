@@ -1,12 +1,44 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { ShoppingCart, Zap } from 'lucide-react';
+import { ShoppingCart } from 'lucide-react';
 import type { Product } from '../../data/products';
 import { useCart } from '../../context/CartContext';
 
 interface ProductCardProps {
   product: Product;
   index?: number;
+}
+
+/**
+ * CSS device illustration — replaces the generic Zap icon.
+ * Renders a stylized "instrument enclosure" with a display panel and gold reading line.
+ */
+function DeviceIllustration({ isY }: { isY: boolean }) {
+  const accentColor = isY ? '#DC2626' : '#1E3A5F';
+  return (
+    <div className="relative w-full h-full flex items-center justify-center">
+      {/* Device body */}
+      <div className="device-body w-28 h-36 flex flex-col items-center justify-center">
+        {/* Screen bezel */}
+        <div className="device-screen w-20 h-16 flex flex-col items-center justify-center gap-1.5">
+          {/* Gold reading trace */}
+          <div className="device-trace w-10" />
+          <div className="device-trace w-6" />
+          <div className="device-trace w-8" />
+        </div>
+        {/* Indicator LED */}
+        <div
+          className="w-2 h-2 rounded-full mt-2"
+          style={{ backgroundColor: accentColor, boxShadow: `0 0 6px ${accentColor}` }}
+        />
+      </div>
+      {/* Subtle glow behind device */}
+      <div
+        className="absolute w-20 h-20 rounded-full blur-2xl opacity-20"
+        style={{ backgroundColor: accentColor }}
+      />
+    </div>
+  );
 }
 
 export default function ProductCard({ product, index = 0 }: ProductCardProps) {
@@ -18,43 +50,45 @@ export default function ProductCard({ product, index = 0 }: ProductCardProps) {
       initial={{ opacity: 0, y: 60 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-50px' }}
-      transition={{ duration: 0.6, delay: index * 0.15, ease: 'easeOut' }}
-      whileHover={{ y: -8 }}
-      className="group relative bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-500"
+      transition={{ duration: 0.5, delay: index * 0.1, ease: 'easeOut' }}
+      whileHover={{ y: -6 }}
+      className="group relative bg-white rounded-3xl overflow-hidden border border-border-light shadow-lg hover:shadow-2xl transition-all duration-400"
     >
-      {/* Series Badge */}
-      <div
-        className={`absolute top-4 right-4 z-10 px-3 py-1 rounded-full text-white text-sm font-bold ${
-          isY ? 'bg-brand-red' : 'bg-brand-blue'
-        }`}
-      >
-        {product.series}系列
+      {/* Top: Device Illustration Area */}
+      <div className="relative h-52 bg-surface-alt flex items-center justify-center overflow-hidden">
+        {/* Subtle grid pattern */}
+        <div className="absolute inset-0 bg-grid-fine opacity-60" />
+        <DeviceIllustration isY={isY} />
+
+        {/* KV badge — top left */}
+        <span className="absolute top-4 left-4 px-2.5 py-1 rounded-full bg-white/90 text-xs font-bold text-text-secondary shadow-sm backdrop-blur-sm">
+          {product.kv}
+        </span>
       </div>
 
-      {/* Product Image Placeholder */}
-      <div
-        className="relative h-48 md:h-56 flex items-center justify-center overflow-hidden"
-        style={{ background: product.image }}
-      >
-        <Zap className="w-16 h-16 text-white/30" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
-        <div className="absolute bottom-4 left-4 text-white">
-          <span className="text-sm opacity-80">{product.series}系列</span>
-          <span className="ml-2 text-2xl font-black">{product.kv}</span>
-        </div>
-      </div>
-
-      {/* Content */}
+      {/* Bottom: Content */}
       <div className="p-5 md:p-6">
-        <h3 className="text-lg font-bold text-gray-900 mb-1 line-clamp-2">
+        {/* Series badge */}
+        <span
+          className={`inline-flex px-2.5 py-1 rounded-full text-xs font-bold mb-3 ${
+            isY
+              ? 'bg-red-50 text-accent'
+              : 'bg-blue-50 text-primary'
+          }`}
+        >
+          {product.series}系列
+        </span>
+
+        {/* Product name */}
+        <h3 className="text-base font-bold text-text-primary mb-1 line-clamp-2">
           {product.name}
         </h3>
-        <p className="text-sm text-gray-500 mb-4">{product.kv} 额定电压</p>
+        <p className="text-sm text-text-muted mb-4">{product.kv} 额定电压</p>
 
-        {/* Price - Yellow Highlight (Nanfu style) */}
-        <div className="flex items-baseline gap-1 mb-4">
-          <span className="text-sm text-gray-400">¥</span>
-          <span className="text-3xl font-black text-brand-yellow">
+        {/* Price — Gold highlight with amber background */}
+        <div className="bg-gold-light/60 rounded-xl px-4 py-3 mb-4 flex items-baseline gap-0.5">
+          <span className="text-sm text-text-muted">¥</span>
+          <span className="text-2xl font-black text-gold-dark">
             {product.price.toLocaleString()}
           </span>
         </div>
@@ -63,17 +97,15 @@ export default function ProductCard({ product, index = 0 }: ProductCardProps) {
         <div className="flex gap-2">
           <Link
             to={`/products/${product.id}`}
-            className="flex-1 text-center py-2.5 rounded-lg border-2 border-gray-200 text-gray-700 font-semibold text-sm hover:border-brand-blue hover:text-brand-blue transition-colors"
+            className="flex-1 text-center py-2.5 rounded-xl border border-border text-text-secondary font-semibold text-sm hover:border-primary hover:text-primary transition-colors"
           >
             了解详情
           </Link>
           <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.97 }}
             onClick={() => addItem(product)}
-            className={`flex items-center gap-1.5 px-4 py-2.5 rounded-lg text-white font-semibold text-sm cursor-pointer transition-colors ${
-              isY ? 'bg-brand-red hover:bg-red-700' : 'bg-brand-blue hover:bg-blue-800'
-            }`}
+            className="flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-primary text-white font-semibold text-sm cursor-pointer hover:bg-primary-light transition-colors"
           >
             <ShoppingCart className="w-4 h-4" />
             购买

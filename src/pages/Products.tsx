@@ -17,9 +17,10 @@ export default function Products() {
 
   return (
     <>
-      <section className="pt-24 md:pt-32 pb-20 bg-gray-50 min-h-screen">
-        <div className="max-w-7xl mx-auto px-4 md:px-6">
+      <section className="pt-24 md:pt-32 pb-20 bg-surface-alt min-h-screen">
+        <div className="container-wide">
           <SectionTitle
+            overline="Products"
             title="产品中心"
             subtitle="两大系列，四款型号 — 总有一款适合您"
           />
@@ -27,7 +28,7 @@ export default function Products() {
           {/* Filters */}
           <div className="flex flex-wrap items-center justify-center gap-3 mb-10">
             {/* Series filter */}
-            <div className="flex rounded-xl bg-white border border-gray-200 p-1">
+            <div className="flex rounded-xl bg-white border border-border p-1 shadow-sm">
               {([
                 { value: 'all', label: '全部' },
                 { value: 'Y', label: 'Y系列' },
@@ -38,8 +39,8 @@ export default function Products() {
                   onClick={() => setSeriesFilter(opt.value)}
                   className={`px-5 py-2 rounded-lg text-sm font-semibold transition-all cursor-pointer ${
                     seriesFilter === opt.value
-                      ? 'bg-brand-red text-white shadow'
-                      : 'text-gray-500 hover:text-gray-900'
+                      ? 'bg-primary text-white shadow-md'
+                      : 'text-text-secondary hover:text-text-primary'
                   }`}
                 >
                   {opt.label}
@@ -48,7 +49,7 @@ export default function Products() {
             </div>
 
             {/* KV filter */}
-            <div className="flex rounded-xl bg-white border border-gray-200 p-1">
+            <div className="flex rounded-xl bg-white border border-border p-1 shadow-sm">
               {([
                 { value: 'all', label: '全部电压' },
                 { value: '10KV', label: '10KV' },
@@ -59,8 +60,8 @@ export default function Products() {
                   onClick={() => setKvFilter(opt.value)}
                   className={`px-5 py-2 rounded-lg text-sm font-semibold transition-all cursor-pointer ${
                     kvFilter === opt.value
-                      ? 'bg-brand-blue text-white shadow'
-                      : 'text-gray-500 hover:text-gray-900'
+                      ? 'bg-primary text-white shadow-md'
+                      : 'text-text-secondary hover:text-text-primary'
                   }`}
                 >
                   {opt.label}
@@ -80,9 +81,16 @@ export default function Products() {
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              className="text-center py-20 text-gray-400"
+              className="text-center py-20"
             >
-              没有找到匹配的产品
+              <div className="text-5xl mb-4">📦</div>
+              <p className="text-text-muted text-lg mb-4">没有找到匹配的产品</p>
+              <button
+                onClick={() => { setSeriesFilter('all'); setKvFilter('all'); }}
+                className="px-6 py-2.5 rounded-xl bg-primary text-white text-sm font-semibold hover:bg-primary-light transition-colors cursor-pointer"
+              >
+                重置筛选
+              </button>
             </motion.div>
           )}
         </div>

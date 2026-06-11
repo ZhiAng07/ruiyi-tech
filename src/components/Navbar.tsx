@@ -24,12 +24,12 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  // Close mobile menu on route change
   useEffect(() => {
     setMobileOpen(false);
   }, [location.pathname]);
 
   const isHome = location.pathname === '/';
+  const isTransparent = !scrolled && isHome;
 
   return (
     <motion.nav
@@ -37,21 +37,26 @@ export default function Navbar() {
       animate={{ y: 0 }}
       transition={{ duration: 0.5, ease: 'easeOut' }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled || !isHome
-          ? 'bg-white/95 backdrop-blur-md shadow-md'
-          : 'bg-transparent'
+        isTransparent
+          ? 'bg-transparent'
+          : 'bg-white/80 backdrop-blur-xl shadow-sm border-b border-border-light'
       }`}
     >
-      <div className="container-wide">
+      {/* Gradient overlay for text readability when transparent */}
+      {isTransparent && (
+        <div className="absolute inset-0 bg-gradient-to-b from-black/25 to-transparent pointer-events-none" />
+      )}
+
+      <div className="container-wide relative">
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2 group">
-            <div className="w-9 h-9 bg-brand-red rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform">
+            <div className="w-9 h-9 bg-accent rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform">
               <Zap className="w-5 h-5 text-white" />
             </div>
             <span
               className={`text-xl font-black tracking-tight ${
-                scrolled || !isHome ? 'text-gray-900' : 'text-white'
+                isTransparent ? 'text-white' : 'text-text-primary'
               }`}
             >
               锐易科技
@@ -60,31 +65,38 @@ export default function Navbar() {
 
           {/* Desktop Nav */}
           <div className="hidden md:flex items-center gap-8">
-            {navLinks.map((link) => (
-              <Link
-                key={link.path}
-                to={link.path}
-                className={`text-sm font-semibold transition-colors hover:text-brand-red ${
-                  scrolled || !isHome ? 'text-gray-700' : 'text-white/90'
-                } ${
-                  location.pathname === link.path
-                    ? 'text-brand-red'
-                    : ''
-                }`}
-              >
-                {link.label}
-              </Link>
-            ))}
+            {navLinks.map((link) => {
+              const isActive = location.pathname === link.path;
+              return (
+                <Link
+                  key={link.path}
+                  to={link.path}
+                  className={`relative text-sm font-semibold transition-colors hover:text-accent ${
+                    isTransparent
+                      ? isActive ? 'text-white' : 'text-white/80'
+                      : isActive ? 'text-accent' : 'text-text-secondary'
+                  }`}
+                >
+                  {link.label}
+                  {isActive && (
+                    <motion.span
+                      layoutId="navDot"
+                      className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-accent"
+                    />
+                  )}
+                </Link>
+              );
+            })}
           </div>
 
           {/* Right side */}
           <div className="flex items-center gap-3">
             <Link
               to="/cart"
-              className={`relative p-2 rounded-lg transition-colors ${
-                scrolled || !isHome
-                  ? 'text-gray-700 hover:bg-gray-100'
-                  : 'text-white/90 hover:bg-white/10'
+              className={`relative p-2 rounded-xl transition-colors ${
+                isTransparent
+                  ? 'text-white/80 hover:bg-white/10'
+                  : 'text-text-secondary hover:bg-surface-alt'
               }`}
             >
               <ShoppingCart className="w-5 h-5" />
@@ -92,7 +104,7 @@ export default function Navbar() {
                 <motion.span
                   initial={{ scale: 0 }}
                   animate={{ scale: 1 }}
-                  className="absolute -top-1 -right-1 w-5 h-5 bg-brand-red text-white text-xs font-bold rounded-full flex items-center justify-center"
+                  className="absolute -top-1 -right-1 w-5 h-5 bg-accent text-white text-xs font-bold rounded-full flex items-center justify-center"
                 >
                   {totalCount}
                 </motion.span>
@@ -102,11 +114,10 @@ export default function Navbar() {
             {/* Mobile toggle */}
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
-              className={`md:hidden p-2 rounded-lg ${
-                scrolled || !isHome
-                  ? 'text-gray-700'
-                  : 'text-white'
+              className={`md:hidden p-2 rounded-xl ${
+                isTransparent ? 'text-white' : 'text-text-secondary'
               }`}
+              aria-label="Toggle menu"
             >
               {mobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
@@ -121,7 +132,7 @@ export default function Navbar() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-white border-t overflow-hidden"
+            className="md:hidden bg-white/95 backdrop-blur-xl border-t border-border-light overflow-hidden"
           >
             <div className="px-4 py-4 flex flex-col gap-3">
               {navLinks.map((link) => (
@@ -130,20 +141,18 @@ export default function Navbar() {
                   to={link.path}
                   className={`py-2 text-base font-semibold ${
                     location.pathname === link.path
-                      ? 'text-brand-red'
-                      : 'text-gray-700'
+                      ? 'text-accent'
+                      : 'text-text-secondary'
                   }`}
                 >
                   {link.label}
                 </Link>
               ))}
-              <Button
-                variant="primary"
-                size="sm"
-                onClick={() => setMobileOpen(false)}
-              >
-                立即咨询
-              </Button>
+              <a href="#contact">
+                <Button variant="accent" size="sm" className="w-full">
+                  立即咨询
+                </Button>
+              </a>
             </div>
           </motion.div>
         )}

@@ -9,7 +9,11 @@ export default function Home() {
     <>
       <Hero />
       <ProductShowcase />
+      {/* Smooth transition: white → dark */}
+      <div className="h-16 bg-gradient-to-b from-white to-primary pointer-events-none" />
       <CompanyIntro />
+      {/* Smooth transition: dark → light gray */}
+      <div className="h-16 bg-gradient-to-b from-primary to-surface-alt pointer-events-none" />
       <Contact />
       <Footer />
     </>
