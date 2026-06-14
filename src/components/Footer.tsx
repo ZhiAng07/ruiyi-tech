@@ -30,10 +30,10 @@ export default function Footer() {
               <div className="w-9 h-9 bg-accent rounded-lg flex items-center justify-center">
                 <Zap className="w-5 h-5 text-white" />
               </div>
-              <span className="text-xl font-black tracking-tight">锐易科技</span>
+              <span className="text-xl font-black tracking-tight">锐意科技</span>
             </Link>
             <p className="text-white/55 text-sm leading-relaxed mb-6 max-w-sm">
-              锐易科技是国内领先的对地电容电流检测设备制造商，专注Y系列、Z系列产品的研发与制造，以精准检测守护电网安全。
+              锐意科技是国内领先的对地电容电流检测设备制造商，专注Y系列、Z系列产品的研发与制造，以精准检测守护电网安全。
             </p>
             <div className="space-y-2.5 text-sm text-white/50">
               <div className="flex items-center gap-2">
@@ -76,7 +76,7 @@ export default function Footer() {
       <div className="border-t border-white/[0.06]">
         <div className="container-wide py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
           <span className="text-sm text-white/25">
-            © 2026 锐易科技 RUIYI TECHNOLOGY. All rights reserved.
+            © 2026 锐意科技 RUIYI TECHNOLOGY. All rights reserved.
           </span>
           <div className="flex items-center gap-3">
             <span className="w-1 h-1 rounded-full bg-gold/40" />

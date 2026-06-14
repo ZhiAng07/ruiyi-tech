@@ -58,7 +58,7 @@ export default function Hero() {
               transition={{ duration: 0.5, delay: 0.3 }}
               className="text-lg md:text-xl text-white/50 max-w-lg mb-10 leading-relaxed"
             >
-              锐易科技 — 专注对地电容电流检测设备研发与制造
+              锐意科技 — 专注对地电容电流检测设备研发与制造
               <br />
               <span className="text-white/30">Y系列 · Z系列 · 10KV / 35KV 全系覆盖</span>
             </motion.p>

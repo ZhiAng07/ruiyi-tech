@@ -59,7 +59,7 @@ export default function Navbar() {
                 isTransparent ? 'text-white' : 'text-text-primary'
               }`}
             >
-              锐易科技
+              锐意科技
             </span>
           </Link>
 

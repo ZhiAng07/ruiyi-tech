@@ -41,7 +41,7 @@ export default function CompanyIntro() {
       <div className="container-wide relative">
         <SectionTitle
           overline="About Us"
-          title="关于锐易科技"
+          title="关于锐意科技"
           subtitle="深耕电力检测领域，以技术创新驱动行业发展"
           light
         />
@@ -59,13 +59,13 @@ export default function CompanyIntro() {
             </h3>
             <div className="space-y-4 text-white/60 leading-relaxed text-base">
               <p>
-                锐易科技成立于<strong className="text-gold">2026年</strong>，总部位于安徽省合肥市，是一家专注于电力系统对地电容电流检测设备研发、制造与销售的高新技术企业。
+                锐意科技成立于<strong className="text-gold">2026年</strong>，总部位于安徽省合肥市，是一家专注于电力系统对地电容电流检测设备研发、制造与销售的高新技术企业。
               </p>
               <p>
                 公司拥有一支由电力系统专家、高级工程师组成的核心研发团队，先后攻克了高精度电容电流传感、自适应补偿算法、高压绝缘设计等多项关键技术，累计获得国家专利30余项。
               </p>
               <p>
-                目前，锐易科技的产品已广泛应用于国家电网、南方电网及各大电力工程公司，覆盖全国28个省市区，累计交付设备超过2000台，以稳定可靠的品质赢得了客户的一致好评。
+                目前，锐意科技的产品已广泛应用于国家电网、南方电网及各大电力工程公司，覆盖全国28个省市区，累计交付设备超过2000台，以稳定可靠的品质赢得了客户的一致好评。
               </p>
             </div>
 
@@ -126,7 +126,7 @@ export default function CompanyIntro() {
                 <div className="inline-flex px-2.5 py-1 rounded-full bg-white/[0.12] backdrop-blur-sm text-white/60 text-[10px] tracking-widest uppercase mb-2">
                   RUIYI TECH
                 </div>
-                <div className="text-white font-black text-xl">锐易科技制造中心</div>
+                <div className="text-white font-black text-xl">锐意科技制造中心</div>
               </div>
             </div>
 
